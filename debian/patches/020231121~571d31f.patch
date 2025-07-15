@@ -1,0 +1,27 @@
+Description: use u64 instead of usize in test
+Author: Alexander Kjäll <alexander.kjall@gmail.com>
+Origin: upstream, https://github.com/RustCrypto/signatures/pull/761/commits/b3adc49
+Bug: https://github.com/RustCrypto/signatures/pull/761
+Last-Update: 2022-11-25
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/ed25519/tests/serde.rs
++++ b/ed25519/tests/serde.rs
+@@ -38,7 +38,7 @@
+     let mut serializer = bincode::Serializer::new(&mut encoded_signature, options);
+     serde_bytes::serialize(&signature, &mut serializer).unwrap();
+ 
+-    let mut expected = Vec::from(Signature::BYTE_SIZE.to_le_bytes());
++    let mut expected = Vec::from((Signature::BYTE_SIZE as u64).to_le_bytes());
+     expected.extend(&EXAMPLE_SIGNATURE[..]);
+     assert_eq!(&expected[..], &encoded_signature[..]);
+ }
+@@ -48,7 +48,7 @@
+ fn test_deserialize_bytes() {
+     use bincode::Options;
+ 
+-    let mut encoded_signature = Vec::from(Signature::BYTE_SIZE.to_le_bytes());
++    let mut encoded_signature = Vec::from((Signature::BYTE_SIZE as u64).to_le_bytes());
+     encoded_signature.extend(&EXAMPLE_SIGNATURE[..]);
+ 
+     let options = bincode::DefaultOptions::new()

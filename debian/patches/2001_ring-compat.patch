@@ -1,0 +1,27 @@
+Description: avoid not-in-Debian crate ring-compat
+Author: Jonas Smedegaard <dr@jones.dk>
+Forwarded: not-needed
+Last-Update: 2023-08-15
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/ed25519/Cargo.toml
++++ b/ed25519/Cargo.toml
+@@ -29,7 +29,6 @@
+ bincode = "1"
+ ed25519-dalek = { version = "2", features = ["rand_core"] }
+ hex-literal = "0.4"
+-ring-compat = { version = "0.8", default-features = false, features = ["signature"] }
+ rand_core = { version = "0.6", features = ["std"] }
+ 
+ [features]
+--- a/ed25519/src/lib.rs
++++ b/ed25519/src/lib.rs
+@@ -154,7 +154,7 @@
+ //! instantiate and use the previously defined `HelloSigner` and `HelloVerifier`
+ //! types with [`ring-compat`] as the signing/verification provider:
+ //!
+-//! ```
++//! ```ignore
+ //! use ring_compat::signature::{
+ //!     ed25519::{Signature, SigningKey, VerifyingKey},
+ //!     Signer, Verifier

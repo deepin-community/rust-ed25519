@@ -1,15 +1,59 @@
-Source: template-repository
-Section: unknown
+Source: rust-ed25519
+Section: rust
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-sequence-rust,
+ librust-bincode-1+default-dev,
+ librust-ed25519-dalek-2+default-dev,
+ librust-ed25519-dalek-2+rand-core-dev,
+ librust-hex-literal-0.4+default-dev,
+ librust-pkcs8-0.10+default-dev,
+ librust-rand-core-0.6+default-dev,
+ librust-rand-core-0.6+std-dev,
+ librust-signature-2+std-dev,
+Maintainer: Jonas Smedegaard <dr@jones.dk>
+Standards-Version: 4.7.0
+Vcs-Git: https://salsa.debian.org/debian/rust-ed25519.git
+Vcs-Browser: https://salsa.debian.org/debian/rust-ed25519
+Homepage: https://github.com/rustcrypto/signatures
+Rules-Requires-Root: no
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: librust-ed25519-dev
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ librust-pkcs8-0.10+default-dev,
+ librust-signature-2+std-dev,
+ librust-serde-1-dev,
+ librust-serde-bytes-0.11+default-dev,
+ librust-zeroize-1-dev,
+ ${misc:Depends},
+Provides:
+ librust-ed25519-2+alloc-dev (= ${binary:Version}),
+ librust-ed25519-2+default-dev (= ${binary:Version}),
+ librust-ed25519-2+pem-dev (= ${binary:Version}),
+ librust-ed25519-2+pkcs8-dev (= ${binary:Version}),
+ librust-ed25519-2+serde-bytes-dev (= ${binary:Version}),
+ librust-ed25519-2+serde-dev (= ${binary:Version}),
+ librust-ed25519-2+std-dev (= ${binary:Version}),
+ librust-ed25519-2+zeroize-dev (= ${binary:Version}),
+ librust-ed25519-2-dev (= ${binary:Version}),
+ librust-ed25519-2.2-dev (= ${binary:Version}),
+ librust-ed25519-2.2.3-dev (= ${binary:Version}),
+Description: generic Ed25519 signature algorithm - Rust source code
+ The `ed25519` crate allows you can write code
+ which signs and verifies messages using the Ed25519 signature algorithm
+ generically over any supported Ed25519 implementation.
+ .
+ This allows consumers of your code
+ to plug in whatever implementation they want
+ to use without having to add all potential Ed25519 libraries
+ you'd like to support as optional dependencies.
+ .
+ Ed25519 is an EdDSA signature scheme
+ using the secure hash function SHA-512 (SHA-2)
+ and the elliptic curve Curve25519.
+ .
+ This package contains the source for the Rust ed25519 crate,
+ for use with cargo.

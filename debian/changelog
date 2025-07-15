@@ -1,5 +1,97 @@
-template-repository (1.0-1) unstable; urgency=medium
+rust-ed25519 (2.2.3+ds-6) unstable; urgency=medium
 
-  * Initial release
+  * stop mention dh-cargo in long description
+  * update watch file:
+    + improve filename mangling;
+    + handle prereleases
+    + use Github API
+  * add metadata about upstream project
+  * declare rust-related build-dependencies unconditionally,
+    i.e. drop broken nocheck annotations
+  * update git-buildpackage config:
+    + filter out debian subdir
+    + simplify usage comments
+  * update copyright info: update coverage
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 06 Feb 2025 19:17:11 +0100
+
+rust-ed25519 (2.2.3+ds-5) unstable; urgency=medium
+
+  * autopkgtest-depend on dh-rust (not dh-cargo)
+  * reduce autopkgtest to check single-feature tests only on amd64
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 30 Jul 2024 17:56:13 +0200
+
+rust-ed25519 (2.2.3+ds-4) unstable; urgency=medium
+
+  * simplify packaging;
+    build-depend on dh-sequence-rust
+    (not dh-cargo libstring-shellquote-perl)
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 12 Jul 2024 12:53:11 +0200
+
+rust-ed25519 (2.2.3+ds-3) unstable; urgency=medium
+
+  * update copyright info:
+    + fix file path
+    + update coverage
+  * drop patch 2001_ed25519-dalek;
+    build- and autopkgtest-depend on package for crate ed25519-dalek
+  * declare compliance with Debian Policy 4.7.0
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 16 May 2024 14:15:14 +0200
+
+rust-ed25519 (2.2.3+ds-2) unstable; urgency=medium
+
+  * add patch cherry-picked upstream
+    to use u64 instead of usize in test
+  * provide and autpkgtest features pkcs8 serde zeroize
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 25 Nov 2023 00:47:29 +0100
+
+rust-ed25519 (2.2.3+ds-1) unstable; urgency=medium
+
+  [ upstream ]
+  * new release
+
+  [ Jonas Smedegaard ]
+  * bump project version in virtual packages and autopkgtests
+  * unfuzz patches
+
+ -- Jonas Smedegaard <dr@jones.dk>  Mon, 16 Oct 2023 20:07:57 +0200
+
+rust-ed25519 (2.2.2+ds-1) unstable; urgency=medium
+
+  [ upstream ]
+  * new release
+
+  [ Jonas Smedegaard ]
+  * bump project version in virtual packages and autopkgtests
+  * unfuzz patches
+  * update dh-cargo fork
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 21 Sep 2023 01:27:24 +0200
+
+rust-ed25519 (2.2.1+ds-3) unstable; urgency=medium
+
+  * update copyright info: fix a reference
+  * drop patch 2001_pkcs8;
+    (build-)depend on package for crate pkcs8;
+    provide and autopkgtest features alloc pem
+  * update dh-cargo fork
+  * update copyright info: update coverage
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 16 Sep 2023 15:25:50 +0200
+
+rust-ed25519 (2.2.1+ds-2) unstable; urgency=medium
+
+  * strip duplicate line in copyright file
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 29 Aug 2023 20:15:49 +0200
+
+rust-ed25519 (2.2.1+ds-1) experimental; urgency=medium
+
+  * initial packaging release;
+    closes: bug#1049395
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 24 Aug 2023 11:41:31 +0200
